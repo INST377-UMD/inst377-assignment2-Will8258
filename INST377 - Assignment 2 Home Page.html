@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="Home Page.css">
+</head>
+<body>
+    <h1>INST377 Activties</h1>
+    <div id="nav">
+        <ul class="pagelinks">
+            <li><a class="pagelinks" href="INST377 - Assignment 2 Home Page.html">Home</a></li>
+            <li><a class="pagelinks" href="INST377 - Assignment 2 Dogs Page.html">Dogs</a></li>
+            <li><a class="pagelinks" href="INST377 - Assignment 2 Stocks Page.html">Stocks</a></li>
+        </ul>
+    </div>
+    <div class="homeButtonContainer">
+        <button id="stocks" class="button-63"><a href="INST377 - Assignment 2 Stocks Page.html">Stocks</a></button>
+        <button id="dogs" class="button-63"><a href="INST377 - Assignment 2 Dogs Page.html">Dogs</a></button>
+    </div>
+    <div class="quoteContainer">
+        <h1>Quote of the Page Load</h1>
+        <p id="quote">
+
+        </p>
+    </div>
+    <div id="instructions" class="audioInstructions">
+        <h1>Options To Navigate With Audio Below:</h1>
+        <p id="instruction1">Please make sure your mic is enabled to use the audio feature.</p>
+        <ul>
+            <li>Navigate to a different page: <p>Say: Navigate to (home, dogs, or stocks)</p> </li>
+            <li>Change the page color: <p>Say: Change page color to (color)</p> </li>
+            <li>Say hello back to you <p>Say: Hello</p> </li>
+        </ul>
+        <div class="buttonContainer">
+            <button id="audioOn" class="button-74">Turn On Audio</button>
+            <button id="audioOff" class="button-74">Turn Off Audio</button>
+        </div>
+    </div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+<script>
+    if (annyang) {
+        // Let's define a command.
+        const commands = {
+            'Hello': function() {alert("Hello World")},
+            'Change page color to *color': function(color) {document.body.style.backgroundColor = color},
+            'Navigate to *page': function(page) {
+                if (page = "home"){
+                    window.location.href = "INST377 - Assignment 2 Home Page.html"
+                } else if (page = "dogs"){
+                    window.location.href = "INST377 - Assignment 2 Dogs Page.html"
+                } else if (page = "stocks"){
+                    window.location.href = "INST377 - Assignment 2 Stocks Page.html"
+                } else {
+                    alert(`${page} is not a vaild page.`)
+                }
+            }
+        };
+    
+        // Add our commands to annyang
+        annyang.addCommands(commands);
+    
+        // Start listening.
+        document.getElementById("audioOn").addEventListener("click", function() {
+            annyang.start();
+            alert("It's Working & On")
+        })
+
+        document.getElementById("audioOff").addEventListener("click", function() {
+            annyang.abort();
+            alert("It's Working & Off")
+        })
+    }
+</script>
+<script src="Home Page.js"></script>
+</body>
+</html>
